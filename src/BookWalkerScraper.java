@@ -20,7 +20,7 @@ public class BookWalkerScraper {
             System.err.println(e);
         }
 
-        System.out.println(this.response);
+        extractImages();
     }
 
     public static String sendGetRequest(String url) throws IOException, InterruptedException {
@@ -41,12 +41,14 @@ public class BookWalkerScraper {
 
     public void extractImages() {
         Document doc = Jsoup.parse(this.response);
-        Elements images = doc.getElementsByClass("m-thub__image");
+        Elements links = doc.select("a.m-thumb__image");
 
-        for (Element image : images) {
-            // 例えば、img要素のsrc属性を取得する場合
-            String src = image.attr("src");
-            System.out.println("Image Source: " + src);
+        for (Element link : links) {
+            Elements images = link.select("img"); // 各aタグ内のimgタグを選択
+            for (Element image : images) {
+                String src = image.attr("src"); // imgタグのsrc属性を取得
+                System.out.println("Image Source: " + src);
+            }
         }
     }
 }

@@ -76,18 +76,17 @@ public class ImageStatisticsCalculator {
         return median;
     }
 
-    private int[] calculateLuminanceDistribution() {
+    private int[] calculateLuminanceDistribution(UserImage image) {
         int[] luminanceDistribution = new int[RGB_MAX];
-        for (UserImage image : imageDataSet) {
-            int[][] R = image.getColorData().getR();
-            int[][] G = image.getColorData().getG();
-            int[][] B = image.getColorData().getB();
-            
-            for (int x = 0; x < R.length; x++) {
-                for (int y = 0; y < R[x].length; y++) {
-                    int luminance = calculateLuminance(R[x][y], G[x][y], B[x][y]);
-                    luminanceDistribution[luminance]++;
-                }
+
+        int[][] R = image.getColorData().getR();
+        int[][] G = image.getColorData().getG();
+        int[][] B = image.getColorData().getB();
+        
+        for (int x = 0; x < R.length; x++) {
+            for (int y = 0; y < R[x].length; y++) {
+                int luminance = calculateLuminance(R[x][y], G[x][y], B[x][y]);
+                luminanceDistribution[luminance]++;
             }
         }
         return luminanceDistribution;
@@ -107,7 +106,7 @@ public class ImageStatisticsCalculator {
             case BLUE:
                 return image.getColorData().getBvalueDistribution();
             case LUMINANCE:
-                return calculateLuminanceDistribution();
+                return calculateLuminanceDistribution(image);
             default:
                 return new int[RGB_MAX]; // 安全のためのデフォルトケース
         }

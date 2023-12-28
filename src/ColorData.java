@@ -11,9 +11,14 @@ class ColorData {
     }
 
     private void InitRGB(BufferedImage image) {
+        //Initialize variables
         int width = image.getWidth();
         int height = image.getHeight();
         this.RGB = new int[width][height];
+        this.R = new int[width][height];
+        this.G = new int[width][height];
+        this.B = new int[width][height];
+
 
         //RGBを二次元配列に格納
         for (int x = 0; x < width; x++) {

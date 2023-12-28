@@ -32,7 +32,7 @@ public class UserImage {
         return this.image;
     }
 
-    public ColorData getRGB() {
+    public ColorData getColorData() {
         return this.color;
     }
 }

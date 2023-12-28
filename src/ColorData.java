@@ -5,6 +5,10 @@ class ColorData {
     private int[][] R;
     private int[][] G;
     private int[][] B;
+    private int[] RValueDistribution;
+    private int[] GValueDistribution;
+    private int[] BValueDistribution;
+
 
     public ColorData(BufferedImage image) {
         InitRGB(image);
@@ -30,6 +34,54 @@ class ColorData {
                 this.B[x][y] = color & 0xff;
             }
         }
+    }
+
+    private void setRValueDistribution() {
+        this.RValueDistribution = new int[257];
+        for (int[] rows : this.R) {
+            for(int value : rows) {
+                this.RValueDistribution[value] += 1;
+            }
+        }
+    }
+
+    private void setGValueDistribution() {
+        this.RValueDistribution = new int[257];
+        for (int[] rows : this.G) {
+            for(int value : rows) {
+                this.GValueDistribution[value] += 1;
+            }
+        }
+    }
+
+    private void setBValueDistribution() {
+        this.RValueDistribution = new int[257];
+        for (int[] rows : this.B) {
+            for(int value : rows) {
+                this.BValueDistribution[value] += 1;
+            }
+        }
+    }
+
+    public int[] getRValueDistribution() {
+        if(this.RValueDistribution == null) {
+            setRValueDistribution();
+        }
+        return this.RValueDistribution;
+    }
+
+    public int[] getGValueDistribution() {
+        if(this.GValueDistribution == null) {
+            setGValueDistribution();
+        }
+        return this.RValueDistribution;
+    }
+
+    public int[] getBValueDistribution() {
+        if(this.BValueDistribution == null) {
+            setBValueDistribution();
+        }
+        return this.RValueDistribution;
     }
 
     public int[][] getRGB() {

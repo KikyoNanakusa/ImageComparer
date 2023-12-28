@@ -5,7 +5,18 @@ import org.jsoup.select.Elements;
 import java.net.URI;
 
 public class BookWalkerScraper extends ImageScraper{
-    protected void extractImages() {
+    public BookWalkerScraper(final String url) {
+        super(validateBookWalkerUrl(url));
+    }
+
+    private static String validateBookWalkerUrl(String url) {
+        if (url == null || !url.contains("bookwalker.jp")) {
+            throw new IllegalArgumentException("URLはBookWalkerのものでなければなりません");
+        }
+        return url;
+    }
+
+    protected void extractImageSources() {
         Document doc = Jsoup.parse(getResponse());
         Elements links = doc.select("a.m-thumb__image");
 
@@ -28,8 +39,4 @@ public class BookWalkerScraper extends ImageScraper{
         }
     }    
 
-    protected void downloadImage() {
-        ImageDownloader imageDownloader = new ImageDownloader();
-        imageDownloader.downloadImage(getImageSources());
-    }
 }

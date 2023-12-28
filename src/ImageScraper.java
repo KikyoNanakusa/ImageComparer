@@ -12,16 +12,16 @@ public abstract class ImageScraper implements IImageScraper{
     private String url;
     private ArrayList<URL> imageSources;
 
-    public ImageScraper() {
+    public ImageScraper(final String url) {
         this.imageSources = new ArrayList<>();
 
-        this.url = "https://bookwalker.jp/new/?qsto=st2";
+        this.url = url;
         try {
             this.response = fetchContent(this.url);
         } catch(IOException | InterruptedException e) {
             System.err.println(e);
         }
-        extractImages();
+        extractImageSources();
         downloadImage();
     }
 
@@ -41,8 +41,12 @@ public abstract class ImageScraper implements IImageScraper{
             }
     }
 
-    protected abstract void extractImages();
-    protected abstract void downloadImage();
+    protected abstract void extractImageSources();
+
+    private void downloadImage() {
+        ImageDownloader imageDownloader = new ImageDownloader();
+        imageDownloader.downloadImage(getImageSources());
+    }
 
     public ArrayList<URL> getImageSources() {
         return this.imageSources;

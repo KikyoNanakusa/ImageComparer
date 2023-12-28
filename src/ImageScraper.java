@@ -11,7 +11,7 @@ public abstract class ImageScraper implements IImageScraper{
     private String response;
     private String url;
     private ArrayList<URL> imageSources;
-    private ArrayList<String> imagePathes;
+    private ArrayList<String> imagePaths;
 
     public ImageScraper(final String url) {
         this.imageSources = new ArrayList<>();
@@ -55,10 +55,10 @@ public abstract class ImageScraper implements IImageScraper{
     }
 
     protected void setImagePathes(final ArrayList<String> value) {
-        this.imagePathes = value;
+        this.imagePaths = value;
     }
 
     public ArrayList<String> getImagePathes() {
-        return this.imagePathes;
+        return this.imagePaths;
     }
 }

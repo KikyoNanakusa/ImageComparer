@@ -5,16 +5,16 @@ class ColorData {
     private int[][] R;
     private int[][] G;
     private int[][] B;
-    private int[] RValueDistribution;
-    private int[] GValueDistribution;
-    private int[] BValueDistribution;
+    private int[] RvalueDistribution;
+    private int[] GvalueDistribution;
+    private int[] BvalueDistribution;
 
 
     public ColorData(BufferedImage image) {
-        InitRGB(image);
+        initRGB(image);
     }
 
-    private void InitRGB(BufferedImage image) {
+    private void initRGB(BufferedImage image) {
         //Initialize variables
         int width = image.getWidth();
         int height = image.getHeight();
@@ -36,52 +36,52 @@ class ColorData {
         }
     }
 
-    private void setRValueDistribution() {
-        this.RValueDistribution = new int[257];
+    private void setRvalueDistribution() {
+        this.RvalueDistribution = new int[256];
         for (int[] rows : this.R) {
             for(int value : rows) {
-                this.RValueDistribution[value] += 1;
+                this.RvalueDistribution[value] += 1;
             }
         }
     }
 
-    private void setGValueDistribution() {
-        this.RValueDistribution = new int[257];
+    private void setGvalueDistribution() {
+        this.GvalueDistribution = new int[256];
         for (int[] rows : this.G) {
             for(int value : rows) {
-                this.GValueDistribution[value] += 1;
+                this.GvalueDistribution[value] += 1;
             }
         }
     }
 
-    private void setBValueDistribution() {
-        this.RValueDistribution = new int[257];
+    private void setBvalueDistribution() {
+        this.BvalueDistribution = new int[256];
         for (int[] rows : this.B) {
             for(int value : rows) {
-                this.BValueDistribution[value] += 1;
+                this.BvalueDistribution[value] += 1;
             }
         }
     }
 
-    public int[] getRValueDistribution() {
-        if(this.RValueDistribution == null) {
-            setRValueDistribution();
+    public int[] getRvalueDistribution() {
+        if(this.RvalueDistribution == null) {
+            setRvalueDistribution();
         }
-        return this.RValueDistribution;
+        return this.RvalueDistribution;
     }
 
-    public int[] getGValueDistribution() {
-        if(this.GValueDistribution == null) {
-            setGValueDistribution();
+    public int[] getGvalueDistribution() {
+        if(this.GvalueDistribution == null) {
+            setGvalueDistribution();
         }
-        return this.RValueDistribution;
+        return this.RvalueDistribution;
     }
 
-    public int[] getBValueDistribution() {
-        if(this.BValueDistribution == null) {
-            setBValueDistribution();
+    public int[] getBvalueDistribution() {
+        if(this.BvalueDistribution == null) {
+            setBvalueDistribution();
         }
-        return this.RValueDistribution;
+        return this.RvalueDistribution;
     }
 
     public int[][] getRGB() {

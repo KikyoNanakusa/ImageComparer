@@ -2,51 +2,47 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
-public class BookWalkerScraper {
-    
-    private String response;
-    private String url;
-
-    public BookWalkerScraper() {
-        try {
-            this.response = sendGetRequest("https://bookwalker.jp/new/?qsto=st2");
-        } catch(IOException | InterruptedException e) {
-            System.err.println(e);
-        }
-
-        System.out.println(this.response);
+public class BookWalkerScraper extends ImageScraper{
+    public BookWalkerScraper(final String url) {
+        super(validateBookWalkerUrl(url));
     }
 
-    public static String sendGetRequest(String url) throws IOException, InterruptedException {
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
+    private static String validateBookWalkerUrl(String url) {
+        if (url == null || !url.contains("bookwalker.jp")) {
+            throw new IllegalArgumentException("URLはBookWalkerのものでなければなりません");
+        }
+        return url;
+    }
 
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            int statusCode = response.statusCode();
+    protected void extractImageSources() {
+        Document doc = Jsoup.parse(getResponse());
+        Elements links = doc.select("a.m-thumb__image");
 
-            if (statusCode == 200) {
-                return response.body();
-            } else {
-                throw new IOException("HTTPリクエストが失敗しました。ステータスコード: " + statusCode);
+        for (Element link : links) {
+            Elements images = link.select("img"); // 各aタグ内のimgタグを選択
+            for (Element image : images) {
+                String src = image.attr("abs:data-original"); // imgタグのsrc属性を取得
+
+                if (src == null || src.isEmpty()) {
+                    src = image.attr("abs:src"); // Fallback for lazy loading
+                }
+                System.out.println("Image Source: " + src);
+                
+                try {
+                    getImageSources().add(URI.create(src).toURL());
+                } catch (Exception e) {
+                    System.err.println(e);       
+                }
             }
-    }
-
-    public void extractImages() {
-        Document doc = Jsoup.parse(this.response);
-        Elements images = doc.getElementsByClass("m-thub__image");
-
-        for (Element image : images) {
-            // 例えば、img要素のsrc属性を取得する場合
-            String src = image.attr("src");
-            System.out.println("Image Source: " + src);
         }
+    }    
+
+    protected void downloadImage() {
+        ImageDownloader imageDownloader = new ImageDownloader();
+        imageDownloader.downloadImage(getImageSources(), "BookWalker");
+        setImagePathes(imageDownloader.getImagePathes());
     }
+
 }

@@ -1,0 +1,7 @@
+# .gitignore
+
+# downloadsフォルダを無視する
+/downloads/
+
+# .vscodeフォルダを無視する
+/.vscode/

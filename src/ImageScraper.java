@@ -1,9 +1,6 @@
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -13,16 +10,19 @@ public abstract class ImageScraper implements IImageScraper{
     
     private String response;
     private String url;
-    private ArrayList<String> imageSources;
+    private ArrayList<URL> imageSources;
 
     public ImageScraper() {
-        String testURL = "https://bookwalker.jp/new/?qsto=st2";
+        this.imageSources = new ArrayList<>();
+
+        this.url = "https://bookwalker.jp/new/?qsto=st2";
         try {
-            this.response = fetchContent(testURL);
+            this.response = fetchContent(this.url);
         } catch(IOException | InterruptedException e) {
             System.err.println(e);
         }
         extractImages();
+        downloadImage();
     }
 
     public String fetchContent(final String url) throws IOException, InterruptedException {
@@ -42,8 +42,9 @@ public abstract class ImageScraper implements IImageScraper{
     }
 
     protected abstract void extractImages();
+    protected abstract void downloadImage();
 
-    public ArrayList<String> getImageSources() {
+    public ArrayList<URL> getImageSources() {
         return this.imageSources;
     }
 

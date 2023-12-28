@@ -39,4 +39,10 @@ public class BookWalkerScraper extends ImageScraper{
         }
     }    
 
+    protected void downloadImage() {
+        ImageDownloader imageDownloader = new ImageDownloader();
+        imageDownloader.downloadImage(getImageSources(), "BookWalker");
+        setImagePathes(imageDownloader.getImagePathes());
+    }
+
 }

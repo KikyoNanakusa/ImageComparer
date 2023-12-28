@@ -7,16 +7,24 @@ import java.util.ArrayList;
 
 
 public class ImageDownloader {
-    public void downloadImage(ArrayList<URL> imageUrls) {
-        String directoryPath = "downloads/img/";
+    private ArrayList<String> imagePathes;
+
+    public ImageDownloader() {
+        imagePathes = new ArrayList<String>();
+    }
+
+    public void downloadImage(ArrayList<URL> imageUrls, String imageType) {
+        String directoryPath = "downloads/img/" + imageType + "/";
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            directory.mkdirs(); // ディレクトリが存在しない場合、作成する
+            directory.mkdirs();
         }
 
         for (int i = 0; i < imageUrls.size(); i++) {
+            String path = directoryPath + String.format("%d.jpg", i);
+
             try (InputStream is = imageUrls.get(i).openStream();
-                 OutputStream os = new FileOutputStream(directoryPath + String.format("%d.jpg", i))) {
+                 OutputStream os = new FileOutputStream(path)) {
 
                 byte[] b = new byte[2048];
                 int length;
@@ -24,11 +32,17 @@ public class ImageDownloader {
                 while ((length = is.read(b)) != -1) {
                     os.write(b, 0, length);
                 }
-                System.out.println("画像がダウンロードされました: " + directoryPath + String.format("%d.jpg", i));
+                
+                System.out.println("画像がダウンロードされました: " + path);
+                imagePathes.add(path);
             } catch (Exception e) {
                 System.err.println("画像のダウンロードに失敗しました: " + e.getMessage());
                 e.printStackTrace();
             }
         }
+    }
+
+    public ArrayList<String> getImagePathes() {
+        return this.imagePathes;
     }
 }

@@ -9,42 +9,42 @@ public class ImageStatisticsCalculator {
         this.imageDataSet = imageDataSet;
     }
 
-    public int[] calculateAverageRValue() {
+    public long[] calculateAverageRValue() {
         return calculateAverageValue(ColorChannel.RED);
     }
 
-    public int[] calculateAverageGValue() {
+    public long[] calculateAverageGValue() {
         return calculateAverageValue(ColorChannel.GREEN);
     }
 
-    public int[] calculateAverageBValue() {
+    public long[] calculateAverageBValue() {
         return calculateAverageValue(ColorChannel.BLUE);
     }
 
-    public int[] calculateMedianRValue() {
+    public long[] calculateMedianRValue() {
         return calculateMedianValue(ColorChannel.RED);
     }
 
-    public int[] calculateMedianGValue() {
+    public long[] calculateMedianGValue() {
         return calculateMedianValue(ColorChannel.GREEN);
     }
 
-    public int[] calculateMedianBValue() {
+    public long[] calculateMedianBValue() {
         return calculateMedianValue(ColorChannel.BLUE);
     }
 
-    public int[] calculateAverageLuminance() {
+    public long[] calculateAverageLuminance() {
         return calculateAverageValue(ColorChannel.LUMINANCE);
     }
 
-    public int[] calculateMedianLuminance() {
+    public long[] calculateMedianLuminance() {
         return calculateMedianValue(ColorChannel.LUMINANCE);
     }
 
-    private int[] calculateAverageValue(ColorChannel channel) {
-        int[] counts = new int[RGB_MAX];
+    private long[] calculateAverageValue(ColorChannel channel) {
+        long[] counts = new long[RGB_MAX];
         for (UserImage image : imageDataSet) {
-            int[] valueDistribution = getColorDistribution(image, channel);
+            long[] valueDistribution = getColorDistribution(image, channel);
             for (int i = 0; i < RGB_MAX; i++) {
                 counts[i] += valueDistribution[i];
             }
@@ -55,14 +55,14 @@ public class ImageStatisticsCalculator {
         return counts;
     }
 
-    private int[] calculateMedianValue(ColorChannel channel) {
+    private long[] calculateMedianValue(ColorChannel channel) {
         int imageDataSetSize = imageDataSet.size();
-        int[][] total = new int[RGB_MAX][imageDataSetSize];
-        int[] median = new int[RGB_MAX];
+        long[][] total = new long[RGB_MAX][imageDataSetSize];
+        long[] median = new long[RGB_MAX];
 
         for (int i = 0; i < imageDataSetSize; i++) {
             UserImage image = imageDataSet.get(i);
-            int[] valueDistribution = getColorDistribution(image, channel);
+            long[] valueDistribution = getColorDistribution(image, channel);
             for (int j = 0; j < RGB_MAX; j++) {
                 total[j][i] = valueDistribution[j];
             }
@@ -76,8 +76,8 @@ public class ImageStatisticsCalculator {
         return median;
     }
 
-    private int[] calculateLuminanceDistribution(UserImage image) {
-        int[] luminanceDistribution = new int[RGB_MAX];
+    private long[] calculateLuminanceDistribution(UserImage image) {
+        long[] luminanceDistribution = new long[RGB_MAX];
 
         int[][] R = image.getColorData().getR();
         int[][] G = image.getColorData().getG();
@@ -97,26 +97,34 @@ public class ImageStatisticsCalculator {
     }
 
 
-    private int[] getColorDistribution(UserImage image, ColorChannel channel) {
+    private long[] getColorDistribution(UserImage image, ColorChannel channel) {
         switch (channel) {
             case RED:
-                return image.getColorData().getRvalueDistribution();
+                return convertToIntArray(image.getColorData().getRvalueDistribution());
             case GREEN:
-                return image.getColorData().getGvalueDistribution();
+                return convertToIntArray(image.getColorData().getGvalueDistribution());
             case BLUE:
-                return image.getColorData().getBvalueDistribution();
+                return convertToIntArray(image.getColorData().getBvalueDistribution());
             case LUMINANCE:
                 return calculateLuminanceDistribution(image);
             default:
-                return new int[RGB_MAX]; // 安全のためのデフォルトケース
+                return new long[RGB_MAX]; // 安全のためのデフォルトケース
         }
     }
 
-    private int findMedian(int[] arr) {
+    private long[] convertToIntArray(int[] array) {
+        long[] longArray = new long[array.length];
+        for (int i = 0; i < array.length; i++) {
+            longArray[i] = array[i];
+        }
+        return longArray;
+    }
+
+    private long findMedian(long[] arr) {
         int length = arr.length;
         if (length % 2 == 0) {
-            int middle1 = arr[length / 2 - 1];
-            int middle2 = arr[length / 2];
+            long middle1 = arr[length / 2 - 1];
+            long middle2 = arr[length / 2];
             return (middle1 + middle2) / 2;
         } else {
             return arr[length / 2];

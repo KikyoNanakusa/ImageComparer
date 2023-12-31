@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class ImageAnalyzer {
     private ArrayList<UserImage> imageDataSet;
-    private int[] RValueAverage;
-    private int[] GValueAverage;
-    private int[] BValueAverage;
-    private int[] RValueMedian;
-    private int[] GValueMedian;
-    private int[] BValueMedian;
-    private int[] LuminanceAverage;
-    private int[] LuminanceMedian;
+    private long[] RValueAverage;
+    private long[] GValueAverage;
+    private long[] BValueAverage;
+    private long[] RValueMedian;
+    private long[] GValueMedian;
+    private long[] BValueMedian;
+    private long[] LuminanceAverage;
+    private long[] LuminanceMedian;
 
     public ImageAnalyzer(final ArrayList<String> imagePaths) {
         this.imageDataSet = ImageDataInitializer.initializeData(imagePaths);
@@ -43,35 +43,35 @@ public class ImageAnalyzer {
         return this.imageDataSet;
     }
 
-    public int[] getRValueAverage() {
+    public long[] getRValueAverage() {
         return this.RValueAverage;
     }
 
-    public int[] getGValueAverage() {
+    public long[] getGValueAverage() {
         return this.GValueAverage;
     }
 
-    public int[] getBValueAverage() {
+    public long[] getBValueAverage() {
         return this.BValueAverage;
     }
 
-    public int[] getRValueMedian() {
+    public long[] getRValueMedian() {
         return this.RValueMedian;
     }
 
-    public int[] getGValueMedian() {
+    public long[] getGValueMedian() {
         return this.GValueMedian;
     }
 
-    public int[] getBValueMedian() {
+    public long[] getBValueMedian() {
         return this.BValueMedian;
     }
 
-    public int[] getLuminanceAverage() {
+    public long[] getLuminanceAverage() {
         return this.LuminanceAverage;
     }
 
-    public int[] getLuminanceMedian() {
+    public long[] getLuminanceMedian() {
         return this.LuminanceMedian;
     }
 }

@@ -33,10 +33,10 @@ public class ImageDownloader {
                     os.write(b, 0, length);
                 }
                 
-                System.out.println("画像がダウンロードされました: " + path);
+                System.out.println("Download Scceed: " + path);
                 imagePaths.add(path);
             } catch (Exception e) {
-                System.err.println("画像のダウンロードに失敗しました: " + e.getMessage());
+                System.err.println("Download Failed: " + e.getMessage());
                 e.printStackTrace();
             }
         }

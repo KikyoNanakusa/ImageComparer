@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 
 public class ImageDownloader {
-    private ArrayList<String> imagePathes;
+    private ArrayList<String> imagePaths;
 
     public ImageDownloader() {
-        imagePathes = new ArrayList<String>();
+        imagePaths = new ArrayList<String>();
     }
 
     public void downloadImage(ArrayList<URL> imageUrls, String imageType) {
@@ -33,16 +33,16 @@ public class ImageDownloader {
                     os.write(b, 0, length);
                 }
                 
-                System.out.println("画像がダウンロードされました: " + path);
-                imagePathes.add(path);
+                System.out.println("Download Scceed: " + path);
+                imagePaths.add(path);
             } catch (Exception e) {
-                System.err.println("画像のダウンロードに失敗しました: " + e.getMessage());
+                System.err.println("Download Failed: " + e.getMessage());
                 e.printStackTrace();
             }
         }
     }
 
-    public ArrayList<String> getImagePathes() {
-        return this.imagePathes;
+    public ArrayList<String> getImagePaths() {
+        return this.imagePaths;
     }
 }

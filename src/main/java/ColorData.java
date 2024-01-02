@@ -1,4 +1,3 @@
-package main.java;
 import java.awt.image.BufferedImage;
 
 class ColorData {

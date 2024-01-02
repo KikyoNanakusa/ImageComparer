@@ -1,4 +1,3 @@
-package main.java;
 public class ArgsChecker {
 
     public static void Check(String[] args) {

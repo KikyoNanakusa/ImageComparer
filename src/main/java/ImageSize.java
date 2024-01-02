@@ -1,4 +1,3 @@
-package main.java;
 public class ImageSize {
     private final int height;
     private final int width;

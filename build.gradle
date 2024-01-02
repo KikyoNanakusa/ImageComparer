@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8 // またはプロジェクトに合わせたJDKバージョン
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 必要な依存関係をここに追加
+    implementation 'org.jsoup:jsoup:1.17.1'
+}
+
+application {
+    mainClassName = 'Main'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(JavaExec) {
+    environment 'JAVA_TOOL_OPTIONS', '-Dfile.encoding=UTF-8'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'

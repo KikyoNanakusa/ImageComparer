@@ -6,11 +6,11 @@ import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
 public class ArrayGraph extends Application {
-   private double[] arrayData;
+   private static long[] arrayData;
 
-   public ArrayGraph(double[] arrayData) {
-       this.arrayData = arrayData;
-   }
+   public ArrayGraph() {
+
+    }
 
    @Override
    public void start(Stage stage) {
@@ -42,7 +42,10 @@ public class ArrayGraph extends Application {
        stage.show();
    }
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
+    public static void main(String[] args) {
+        IImageScraper bookwalkerScraper = new BookWalkerScraper("https://bookwalker.jp/new/?qsto=st2");
+        ImageAnalyzer imageAnalyzer = new ImageAnalyzer(bookwalkerScraper.getImagePathes());
+        arrayData = imageAnalyzer.getRValueAverage();
+        launch(args);
+    }
 }

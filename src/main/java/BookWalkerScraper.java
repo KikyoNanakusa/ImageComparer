@@ -11,7 +11,7 @@ public class BookWalkerScraper extends ImageScraper{
 
     private static String validateBookWalkerUrl(String url) {
         if (url == null || !url.contains("bookwalker.jp")) {
-            throw new IllegalArgumentException("URLはBookWalkerのものでなければなりません");
+            throw new IllegalArgumentException("URL should be BookWalker one");
         }
         return url;
     }
@@ -28,7 +28,7 @@ public class BookWalkerScraper extends ImageScraper{
                 if (src == null || src.isEmpty()) {
                     src = image.attr("abs:src"); // Fallback for lazy loading
                 }
-                System.out.println("Image Source: " + src);
+                // System.out.println("Image source : " + src);
                 
                 try {
                     getImageSources().add(URI.create(src).toURL());

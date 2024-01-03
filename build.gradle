@@ -34,7 +34,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainClassName = 'Main'
+    // mainClassName = 'Main'
+    mainClassName = 'ArrayGraph'
 }
 
 compileJava {

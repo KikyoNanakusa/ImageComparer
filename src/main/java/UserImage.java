@@ -18,9 +18,9 @@ public class UserImage {
         try {
             File file = new File(filePath);
             this.image = ImageIO.read(file);
-            System.out.println("画像の読み込みが完了しました。" + filePath);
+            System.out.println("Image loaded : " + filePath);
         } catch (IOException e) {
-            System.err.println("画像の読み込み中にエラーが発生しました: " + e.getMessage());
+            System.err.println("Image load failed" + e.getMessage());
         }
     }
 

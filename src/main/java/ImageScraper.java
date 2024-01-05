@@ -9,20 +9,35 @@ import java.util.ArrayList;
 public abstract class ImageScraper implements IImageScraper{
     
     private String response;
-    private String url;
     private ArrayList<URL> imageSources;
     private ArrayList<String> imagePaths;
 
+    //urlが単一の場合
     public ImageScraper(final String url) {
         this.imageSources = new ArrayList<>();
 
-        this.url = url;
         try {
-            this.response = fetchContent(this.url);
+            this.response = fetchContent(url);
         } catch(IOException | InterruptedException e) {
             System.err.println(e);
         }
         extractImageSources();
+        downloadImage();
+    }
+
+    //urlが複数の場合
+    public ImageScraper(final String[] urls) {
+        this.imageSources = new ArrayList<>();
+
+        for (String url : urls) {
+            try {
+                this.response = fetchContent(url);
+            } catch(IOException | InterruptedException e) {
+                System.err.println(e);
+            }
+            extractImageSources();
+        }
+
         downloadImage();
     }
 

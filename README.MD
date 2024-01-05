@@ -1,4 +1,4 @@
-# ImageComparer(Draft)
+# ImageComparer(WIP)
 用意した画像のデータセットと任意の画像の、RGB、輝度の分布を比較するためのプログラムです。
 
 ## 機能

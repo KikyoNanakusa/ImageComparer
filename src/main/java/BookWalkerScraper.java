@@ -5,8 +5,15 @@ import org.jsoup.select.Elements;
 import java.net.URI;
 
 public class BookWalkerScraper extends ImageScraper{
+
+    //1つのURLをコンストラクタで受け取る
     public BookWalkerScraper(final String url) {
         super(validateBookWalkerUrl(url));
+    }
+
+    //複数ののURLを使用する
+    public BookWalkerScraper(final String[] urls) {
+        super(validateBookWalkerUrl(urls));
     }
 
     //URLがBookWalkerの物であることをバリデーション
@@ -15,6 +22,13 @@ public class BookWalkerScraper extends ImageScraper{
             throw new IllegalArgumentException("URL should be BookWalker one");
         }
         return url;
+    }
+
+    private static String[] validateBookWalkerUrl(String[] urls) {
+        for(String url : urls) {
+            validateBookWalkerUrl(url);
+        }
+        return urls;
     }
 
     //GETしたHTMLから必要な要素を抽出

@@ -27,7 +27,7 @@ public class ArrayGraph extends Application {
     }
 
     private void initializeData() {
-        IImageScraper bookwalkerScraper = new BookWalkerScraper("https://bookwalker.jp/new/?qsto=st2");
+        IImageScraper bookwalkerScraper = new BookWalkerScraper(BookWalkerURLs.URLS);
         ImageAnalyzer imageAnalyzer = new ImageAnalyzer(bookwalkerScraper.getImagePathes());
 
         addData("R Value Average", imageAnalyzer.getRValueAverage());
@@ -42,11 +42,11 @@ public class ArrayGraph extends Application {
         seriesColors.put("R Value Average", "red");
         seriesColors.put("G Value Average", "green");
         seriesColors.put("B Value Average", "blue");
-        seriesColors.put("Luminance Value Average", "yellow");
+        seriesColors.put("Luminance Value Average", "#808000");
         seriesColors.put("R Value Median", "red");
         seriesColors.put("G Value Median", "green");
         seriesColors.put("B Value Median", "blue");
-        seriesColors.put("Luminance Value Median", "yellow");
+        seriesColors.put("Luminance Value Median", "#808000");
     }
 
     private void addData(String name, long[] data) {

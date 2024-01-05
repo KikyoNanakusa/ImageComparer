@@ -27,8 +27,9 @@ public class ArrayGraph extends Application {
     }
 
     private void initializeData() {
-        IImageScraper bookwalkerScraper = new BookWalkerScraper(BookWalkerURLs.URLS);
-        ImageAnalyzer imageAnalyzer = new ImageAnalyzer(bookwalkerScraper.getImagePathes());
+        DatasetSelector datasetSelector = new DatasetSelector();
+        datasetSelector.selectDataset();
+        ImageAnalyzer imageAnalyzer = new ImageAnalyzer(datasetSelector.getImagePaths());
 
         addData("R Value Average", imageAnalyzer.getRValueAverage());
         addData("G Value Average", imageAnalyzer.getGValueAverage());
@@ -80,7 +81,7 @@ public class ArrayGraph extends Application {
     
         // VBoxにUIコンポーネントを追加
         VBox vbox = new VBox(seriesSelector, lineChart);
-        Scene scene = new Scene(vbox, 800, 600);
+        Scene scene = new Scene(vbox, 800, 400);
         stage.setScene(scene);
         stage.show();
     }

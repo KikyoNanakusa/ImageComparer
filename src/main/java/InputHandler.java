@@ -1,17 +1,19 @@
 import java.util.Scanner;
 
 public class InputHandler {
-   private Scanner scanner;
+  private Scanner scanner;
 
-   public InputHandler() {
-       scanner = new Scanner(System.in);
-   }
+  public InputHandler() {
+      scanner = new Scanner(System.in);
+  }
 
-   public int getInput() {
-       while (!scanner.hasNextInt()) {
-           System.out.println("Please enter a number: ");
-           scanner.next();
-       }
-       return scanner.nextInt();
-   }
+  public int getInput() {
+    while (!scanner.hasNextInt()) {
+        System.out.println("Please enter a number: ");
+        if(scanner.hasNext()){
+            scanner.next();
+        }
+    }
+    return scanner.nextInt();
+ }
 }

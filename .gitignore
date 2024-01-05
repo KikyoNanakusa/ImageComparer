@@ -3,6 +3,9 @@
 # downloadsフォルダを無視する
 /downloads/
 
+#libフォルダを無視する
+/lib/
+
 # .vscodeフォルダを無視する
 /.vscode/
 

@@ -13,8 +13,8 @@ public class ImageDownloader {
         imagePaths = new ArrayList<String>();
     }
 
-    public void downloadImage(ArrayList<URL> imageUrls, String imageType) {
-        String directoryPath = "downloads/img/" + imageType + "/";
+    public void downloadImage(ArrayList<URL> imageUrls, String directryName) {
+        String directoryPath = "downloads/img/" + directryName + "/";
         File directory = new File(directoryPath);
         if (!directory.exists()) {
             directory.mkdirs();

@@ -5,17 +5,33 @@ import org.jsoup.select.Elements;
 import java.net.URI;
 
 public class BookWalkerScraper extends ImageScraper{
+
+    //1つのURLをコンストラクタで受け取る
     public BookWalkerScraper(final String url) {
         super(validateBookWalkerUrl(url));
     }
 
+    //複数ののURLを使用する
+    public BookWalkerScraper(final String[] urls) {
+        super(validateBookWalkerUrl(urls));
+    }
+
+    //URLがBookWalkerの物であることをバリデーション
     private static String validateBookWalkerUrl(String url) {
         if (url == null || !url.contains("bookwalker.jp")) {
-            throw new IllegalArgumentException("URLはBookWalkerのものでなければなりません");
+            throw new IllegalArgumentException("URL should be BookWalker one");
         }
         return url;
     }
 
+    private static String[] validateBookWalkerUrl(String[] urls) {
+        for(String url : urls) {
+            validateBookWalkerUrl(url);
+        }
+        return urls;
+    }
+
+    //GETしたHTMLから必要な要素を抽出
     protected void extractImageSources() {
         Document doc = Jsoup.parse(getResponse());
         Elements links = doc.select("a.m-thumb__image");
@@ -28,7 +44,6 @@ public class BookWalkerScraper extends ImageScraper{
                 if (src == null || src.isEmpty()) {
                     src = image.attr("abs:src"); // Fallback for lazy loading
                 }
-                System.out.println("Image Source: " + src);
                 
                 try {
                     getImageSources().add(URI.create(src).toURL());

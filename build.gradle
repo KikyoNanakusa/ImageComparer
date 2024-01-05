@@ -1,5 +1,8 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
 
 sourceCompatibility = 1.8 // またはプロジェクトに合わせたJDKバージョン
 targetCompatibility = 1.8
@@ -9,12 +12,30 @@ repositories {
 }
 
 dependencies {
-    // 必要な依存関係をここに追加
-    implementation 'org.jsoup:jsoup:1.17.1'
+   // 必要な依存関係をここに追加
+   implementation 'org.jsoup:jsoup:1.17.1'
+
+   // https://mvnrepository.com/artifact/org.openjfx/javafx-controls
+   implementation "org.openjfx:javafx-controls:21"
+
+   // https://mvnrepository.com/artifact/org.openjfx/javafx-fxml
+   implementation "org.openjfx:javafx-fxml:21"
+
+   // https://mvnrepository.com/artifact/org.openjfx/javafx-base
+   implementation "org.openjfx:javafx-base:21"
+
+   // https://mvnrepository.com/artifact/org.openjfx/javafx-graphics
+   implementation "org.openjfx:javafx-graphics:21"
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 application {
-    mainClassName = 'Main'
+    // mainClassName = 'Main'
+    mainClassName = 'ArrayGraph'
 }
 
 compileJava {
@@ -25,10 +46,19 @@ tasks.withType(JavaExec) {
     environment 'JAVA_TOOL_OPTIONS', '-Dfile.encoding=UTF-8'
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 javadoc.options.encoding = 'UTF-8'
+
+run {
+   jvmArgs = ['--module-path', "$projectDir/libs", '--add-modules', 'javafx.controls,javafx.fxml']
+}
+
+java {
+   modularity.inferModulePath = true
+}
+
+javafx {
+    version = "21.0.1"
+    modules = [ 'javafx.controls', 'javafx.fxml', ]
+}

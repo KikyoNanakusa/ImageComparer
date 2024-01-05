@@ -14,17 +14,6 @@ public class ImageAnalyzer {
     public ImageAnalyzer(final ArrayList<String> imagePaths) {
         this.imageDataSet = ImageDataInitializer.initializeData(imagePaths);
         this.calculateStatistics();
-        for (int i = 0; i < 256; i++) {
-            System.err.println(i + ":" + LuminanceAverage[i]);
-        }
-
-        for (int i = 0; i < 256; i++) {
-            System.err.println(i + ":" + RValueAverage[i]);
-        }
-
-        for (int i = 0; i < 256; i++) {
-            System.err.println(i + ":" + GValueAverage[i]);
-        }
     }
 
     private void calculateStatistics() {

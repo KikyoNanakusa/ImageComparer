@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class DatasetSelector {
     private InputHandler inputHandler;
-    private final int MIN_INUPT = 1;
+    private final int MIN_INPUT = 1;
     private final int MAX_INPUT = 3;
     private final String BOOKWALKER_IMAGE_DIRECTLY = "downloads/img/BookWalker";
     private final String USER_IMAGE_DIRECTLY = "UserPreparedData";
@@ -32,7 +32,7 @@ public class DatasetSelector {
     }    
 
     private boolean validateUserInput(int input) {
-        if (input < MIN_INUPT || input > MAX_INPUT) {
+        if (input < MIN_INPUT || input > MAX_INPUT) {
             System.out.println("Enter the appropriate value");
             printInstructions();
             return false;
@@ -40,8 +40,8 @@ public class DatasetSelector {
         return true;
     }
 
-    private ArrayList<String> getAllFileInDirectry(String directryName) {
-        Path dir = Paths.get(directryName); // ディレクトリのパスを指定
+    private ArrayList<String> getAllFileInDirectly(String directlyName) {
+        Path dir = Paths.get(directlyName); // ディレクトリのパスを指定
         ArrayList<String> paths = new ArrayList<>();
 
         try {
@@ -71,14 +71,14 @@ public class DatasetSelector {
                 imagePaths = bookwalkerScraper.getImagePaths();
                 break;
             case 2:
-                bookwalkerScraper = new BookWalkerScraper(BookWalkerURLs.newesy60Mangas);
+                bookwalkerScraper = new BookWalkerScraper(BookWalkerURLs.newest60Mangas);
                 imagePaths = bookwalkerScraper.getImagePaths();
                 break;
             case 3:
-                imagePaths = getAllFileInDirectry(BOOKWALKER_IMAGE_DIRECTLY);
+                imagePaths = getAllFileInDirectly(BOOKWALKER_IMAGE_DIRECTLY);
                 break;
             case 4:
-                imagePaths = getAllFileInDirectry(USER_IMAGE_DIRECTLY);
+                imagePaths = getAllFileInDirectly(USER_IMAGE_DIRECTLY);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid input");

@@ -5,6 +5,24 @@ import java.util.Map;
 import javafx.util.Pair;
 
 public class ChartDataLoader {
+    private final String R_VALUE_AVERAGE = "R Value Average";
+    private final String G_VALUE_AVERAGE = "G Value Average";
+    private final String B_VALUE_AVERAGE = "B Value Average";
+    private final String LUMINANCE_VALUE_AVERAGE = "Luminance Value Average";
+    private final String R_VALUE_MEDIAN = "R Value Median";
+    private final String G_VALUE_MEDIAN = "G Value Median";
+    private final String B_VALUE_MEDIAN = "B Value Median";
+    private final String LUMINANCE_VALUE_MEDIAN = "Luminance Value Median";
+    private final String USER_IMG_R_VALUE_AVERAGE = "User Image R Value Average";
+    private final String USER_IMG_G_VALUE_AVERAGE = "User Image G Value Average";
+    private final String USER_IMG_B_VALUE_AVERAGE = "User Image B Value Average";
+    private final String USER_IMG_LUMINANCE_VALUE_AVERAGE = "User Image Luminance Value Average";
+    private final String USER_IMG_R_VALUE_MEDIAN = "User Image R Value Median";
+    private final String USER_IMG_G_VALUE_MEDIAN = "User Image G Value Median";
+    private final String USER_IMG_B_VALUE_MEDIAN = "User Image B Value Median";
+    private final String USER_IMG_LUMINANCE_VALUE_MEDIAN = "User Image Luminance Value Median";
+    private final String COLOR_ORANGE = "orange";
+
     private List<long[]> dataArrays = new ArrayList<>();
     private List<long[]> userImageDataArrays = new ArrayList<>();
     private List<String> dataNames = new ArrayList<>();
@@ -27,63 +45,63 @@ public class ChartDataLoader {
         datasetSelector.selectDataset();
         ImageAnalyzer dataSetImageAnalyzer = new ImageAnalyzer(datasetSelector.getImagePaths());
 
-        addData("R Value Average", dataSetImageAnalyzer.getRValueAverage());
-        addData("G Value Average", dataSetImageAnalyzer.getGValueAverage());
-        addData("B Value Average", dataSetImageAnalyzer.getBValueAverage());
-        addData("Luminance Value Average", dataSetImageAnalyzer.getLuminanceAverage());
-        addData("R Value Median", dataSetImageAnalyzer.getRValueMedian());
-        addData("G Value Median", dataSetImageAnalyzer.getGValueMedian());
-        addData("B Value Median", dataSetImageAnalyzer.getBValueMedian());
-        addData("Luminance Value Median", dataSetImageAnalyzer.getLuminanceMedian());
+        addData(R_VALUE_AVERAGE, dataSetImageAnalyzer.getRValueAverage());
+        addData(G_VALUE_AVERAGE, dataSetImageAnalyzer.getGValueAverage());
+        addData(B_VALUE_AVERAGE, dataSetImageAnalyzer.getBValueAverage());
+        addData(LUMINANCE_VALUE_AVERAGE, dataSetImageAnalyzer.getLuminanceAverage());
+        addData(R_VALUE_MEDIAN, dataSetImageAnalyzer.getRValueMedian());
+        addData(G_VALUE_MEDIAN, dataSetImageAnalyzer.getGValueMedian());
+        addData(B_VALUE_MEDIAN, dataSetImageAnalyzer.getBValueMedian());
+        addData(LUMINANCE_VALUE_MEDIAN, dataSetImageAnalyzer.getLuminanceMedian());
 
-        seriesColors.put("R Value Average", "red");
-        seriesColors.put("G Value Average", "green");
-        seriesColors.put("B Value Average", "blue");
-        seriesColors.put("Luminance Value Average", "#808000");
-        seriesColors.put("R Value Median", "red");
-        seriesColors.put("G Value Median", "green");
-        seriesColors.put("B Value Median", "blue");
-        seriesColors.put("Luminance Value Median", "#808000");
+        seriesColors.put(R_VALUE_AVERAGE, "red");
+        seriesColors.put(G_VALUE_AVERAGE, "green");
+        seriesColors.put(B_VALUE_AVERAGE, "blue");
+        seriesColors.put(LUMINANCE_VALUE_AVERAGE, "#808000");
+        seriesColors.put(R_VALUE_MEDIAN, "red");
+        seriesColors.put(G_VALUE_MEDIAN, "green");
+        seriesColors.put(B_VALUE_MEDIAN, "blue");
+        seriesColors.put(LUMINANCE_VALUE_MEDIAN, "#808000");
     }
 
     private void initializeUserImageData() {
         ImageAnalyzer imageAnalyzer = new ImageAnalyzer(new UserImagePathFinder().getImagePaths());
-        addUserImageData("User Image R Value Average", imageAnalyzer.getRValueAverage());
-        addUserImageData("User Image G Value Average", imageAnalyzer.getGValueAverage());
-        addUserImageData("User Image B Value Average", imageAnalyzer.getBValueAverage());
-        addUserImageData("User Image Luminance Value Average", imageAnalyzer.getLuminanceAverage());
-        addUserImageData("User Image R Value Median", imageAnalyzer.getRValueMedian());
-        addUserImageData("User Image G Value Median", imageAnalyzer.getGValueMedian());
-        addUserImageData("User Image B Value Median", imageAnalyzer.getBValueMedian());
-        addUserImageData("User Image Luminance Value Median", imageAnalyzer.getLuminanceMedian());
-        
-        seriesColors.put("User Image R Value Average", "orange");
-        seriesColors.put("User Image G Value Average", "orange");
-        seriesColors.put("User Image B Value Average", "orange");
-        seriesColors.put("User Image Luminance Value Average", "orange");
-        seriesColors.put("User Image R Value Median", "orange");
-        seriesColors.put("User Image G Value Median", "orange");
-        seriesColors.put("User Image B Value Median", "orange");
-        seriesColors.put("User Image Luminance Value Median", "orange");
+        addUserImageData(USER_IMG_R_VALUE_AVERAGE, imageAnalyzer.getRValueAverage());
+        addUserImageData(USER_IMG_G_VALUE_AVERAGE, imageAnalyzer.getGValueAverage());
+        addUserImageData(USER_IMG_B_VALUE_AVERAGE, imageAnalyzer.getBValueAverage());
+        addUserImageData(USER_IMG_LUMINANCE_VALUE_AVERAGE, imageAnalyzer.getLuminanceAverage());
+        addUserImageData(USER_IMG_R_VALUE_MEDIAN, imageAnalyzer.getRValueMedian());
+        addUserImageData(USER_IMG_G_VALUE_MEDIAN, imageAnalyzer.getGValueMedian());
+        addUserImageData(USER_IMG_B_VALUE_MEDIAN, imageAnalyzer.getBValueMedian());
+        addUserImageData(USER_IMG_LUMINANCE_VALUE_MEDIAN, imageAnalyzer.getLuminanceMedian());
+
+        seriesColors.put(USER_IMG_R_VALUE_AVERAGE, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_G_VALUE_AVERAGE, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_B_VALUE_AVERAGE, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_LUMINANCE_VALUE_AVERAGE, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_R_VALUE_MEDIAN, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_G_VALUE_MEDIAN, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_B_VALUE_MEDIAN, COLOR_ORANGE);
+        seriesColors.put(USER_IMG_LUMINANCE_VALUE_MEDIAN, COLOR_ORANGE);
     }
 
     private void linkDataSets() {
-        addLinkedData("R Value Average", findDataByName("R Value Average"),
-                findUserDataByName("User Image R Value Average"));
-        addLinkedData("G Value Average", findDataByName("G Value Average"),
-                findUserDataByName("User Image G Value Average"));
-        addLinkedData("B Value Average", findDataByName("B Value Average"),
-                findUserDataByName("User Image B Value Average"));
-        addLinkedData("Luminance Value Average", findDataByName("Luminance Value Average"),
-                findUserDataByName("User Image Luminance Value Average"));
-        addLinkedData("R Value Median", findDataByName("R Value Median"),
-                findUserDataByName("User Image R Value Median"));
-        addLinkedData("G Value Median", findDataByName("G Value Median"),
-                findUserDataByName("User Image G Value Median"));
-        addLinkedData("B Value Median", findDataByName("B Value Median"),
-                findUserDataByName("User Image B Value Median"));
-        addLinkedData("Luminance Value Median", findDataByName("Luminance Value Median"),
-                findUserDataByName("User Image Luminance Value Median"));
+        addLinkedData(R_VALUE_AVERAGE, findDataByName(R_VALUE_AVERAGE),
+                findUserDataByName(USER_IMG_R_VALUE_AVERAGE));
+        addLinkedData(G_VALUE_AVERAGE, findDataByName(G_VALUE_AVERAGE),
+                findUserDataByName(USER_IMG_B_VALUE_AVERAGE));
+        addLinkedData(B_VALUE_AVERAGE, findDataByName(B_VALUE_AVERAGE),
+                findUserDataByName(USER_IMG_G_VALUE_AVERAGE));
+        addLinkedData(LUMINANCE_VALUE_AVERAGE, findDataByName(LUMINANCE_VALUE_AVERAGE),
+                findUserDataByName(USER_IMG_LUMINANCE_VALUE_AVERAGE));
+        addLinkedData(R_VALUE_MEDIAN, findDataByName(R_VALUE_MEDIAN),
+                findUserDataByName(USER_IMG_R_VALUE_MEDIAN));
+        addLinkedData(G_VALUE_MEDIAN, findDataByName(G_VALUE_MEDIAN),
+                findUserDataByName(USER_IMG_G_VALUE_MEDIAN));
+        addLinkedData(B_VALUE_MEDIAN, findDataByName(B_VALUE_MEDIAN),
+                findUserDataByName(USER_IMG_B_VALUE_MEDIAN));
+        addLinkedData(LUMINANCE_VALUE_MEDIAN, findDataByName(LUMINANCE_VALUE_MEDIAN),
+                findUserDataByName(USER_IMG_LUMINANCE_VALUE_MEDIAN));
     }
 
     private void addData(String name, long[] data) {

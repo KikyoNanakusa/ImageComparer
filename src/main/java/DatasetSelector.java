@@ -12,8 +12,8 @@ public class DatasetSelector {
     private InputHandler inputHandler;
     private final int MIN_INUPT = 1;
     private final int MAX_INPUT = 3;
-    private final String BOOKWALKER_IMAGE_DIRECTRY = "downloads/img/BookWalker";
-    private final String USER_IMAGE_DIRECTRY = "UserPreparedData";
+    private final String BOOKWALKER_IMAGE_DIRECTLY = "downloads/img/BookWalker";
+    private final String USER_IMAGE_DIRECTLY = "UserPreparedData";
     private ArrayList<String> imagePaths;
 
 
@@ -27,7 +27,7 @@ public class DatasetSelector {
         System.out.println("Choose Dataset");
         System.out.println("1:Scrape newest 300 Mangas from BookWalker");
         System.out.println("2:Scrape newest 60 Mangas from BookWalker");
-        System.out.println("3:Exsiting BookWalker images");
+        System.out.println("3:Existing BookWalker images");
         System.out.println("4:Your images");
     }    
 
@@ -45,14 +45,14 @@ public class DatasetSelector {
         ArrayList<String> paths = new ArrayList<>();
 
         try {
-           Files.walk(dir)
-               .filter(Files::isRegularFile) // ディレクトリ自体とサブディレクトリは除外
-               .forEach(p -> paths.add(p.toString()));
+            Files.walk(dir)
+                    .filter(Files::isRegularFile) // ディレクトリ自体とサブディレクトリは除外
+                    .forEach(p -> paths.add(p.toString()));
         } catch (IOException e) {
-           e.printStackTrace();
-       }
+            e.printStackTrace();
+        }
 
-       return paths;
+        return paths;
     }
 
     /**
@@ -68,17 +68,17 @@ public class DatasetSelector {
         switch(input) {
             case 1:
                 IImageScraper bookwalkerScraper = new BookWalkerScraper(BookWalkerURLs.newest300Mangas);
-                imagePaths = bookwalkerScraper.getImagePathes();
+                imagePaths = bookwalkerScraper.getImagePaths();
                 break;
             case 2:
                 bookwalkerScraper = new BookWalkerScraper(BookWalkerURLs.newesy60Mangas);
-                imagePaths = bookwalkerScraper.getImagePathes();
+                imagePaths = bookwalkerScraper.getImagePaths();
                 break;
             case 3:
-                imagePaths = getAllFileInDirectry(BOOKWALKER_IMAGE_DIRECTRY);
+                imagePaths = getAllFileInDirectry(BOOKWALKER_IMAGE_DIRECTLY);
                 break;
             case 4:
-                imagePaths = getAllFileInDirectry(USER_IMAGE_DIRECTRY);
+                imagePaths = getAllFileInDirectry(USER_IMAGE_DIRECTLY);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid input");

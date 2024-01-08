@@ -13,6 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The ArrayGraph class is a Java application that creates a line chart to display multiple data series
+ * from arrays.
+ */
 public class ArrayGraph extends Application {
     private List<long[]> dataArrays;
     private List<String> dataNames;
@@ -26,11 +30,13 @@ public class ArrayGraph extends Application {
         initializeData();
     }
 
+    //グラフに表示するデータを初期化、データごとに色を設定
     private void initializeData() {
         DatasetSelector datasetSelector = new DatasetSelector();
         datasetSelector.selectDataset();
         ImageAnalyzer imageAnalyzer = new ImageAnalyzer(datasetSelector.getImagePaths());
 
+        
         addData("R Value Average", imageAnalyzer.getRValueAverage());
         addData("G Value Average", imageAnalyzer.getGValueAverage());
         addData("B Value Average", imageAnalyzer.getBValueAverage());

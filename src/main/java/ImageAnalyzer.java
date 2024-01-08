@@ -28,10 +28,6 @@ public class ImageAnalyzer {
         this.LuminanceMedian = calculator.calculateMedianLuminance();
     }
 
-    private ArrayList<UserImage> getImageDataSet() {
-        return this.imageDataSet;
-    }
-
     public long[] getRValueAverage() {
         return this.RValueAverage;
     }

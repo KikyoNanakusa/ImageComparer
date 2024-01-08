@@ -69,11 +69,11 @@ public abstract class ImageScraper implements IImageScraper{
         return this.response;
     }
 
-    protected void setImagePathes(final ArrayList<String> value) {
+    protected void setImagePaths(final ArrayList<String> value) {
         this.imagePaths = value;
     }
 
-    public ArrayList<String> getImagePathes() {
+    public ArrayList<String> getImagePaths() {
         return this.imagePaths;
     }
 }

@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * The ImageAnalyzer class calculates and stores various statistics for a dataset of user images.
+ */
 public class ImageAnalyzer {
     private ArrayList<UserImage> imageDataSet;
     private long[] RValueAverage;

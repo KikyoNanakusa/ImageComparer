@@ -17,8 +17,19 @@ public class ImageDownloader {
         imagePaths = new ArrayList<String>();
     }
 
-    public void downloadImage(ArrayList<URL> imageUrls, String directryName) {
-        String directoryPath = "downloads/img/" + directryName + "/";
+    /**
+     * The `downloadImage` function downloads a list of images from given URLs and
+     * saves them to a
+     * specified directory.
+     * 
+     * @param imageUrls    An ArrayList of URLs representing the image URLs that
+     *                     need to be downloaded.
+     * @param directoryName The `directoryName` parameter is a `String` that
+     *                     represents the name of the
+     *                     directory where the downloaded images will be saved.
+     */
+    public void downloadImage(ArrayList<URL> imageUrls, String directoryName) {
+        String directoryPath = "downloads/img/" + directoryName + "/";
         Path dir = Paths.get(directoryPath);
         File directory = new File(directoryPath);
         
@@ -40,7 +51,7 @@ public class ImageDownloader {
                         }
                     });
             } catch (IOException e) {
-                System.err.println("Failed to open the directry");
+                System.err.println("Failed to open the directory");
                 e.printStackTrace();
             }
         }
@@ -49,7 +60,7 @@ public class ImageDownloader {
             String path = directoryPath + String.format("%d.jpg", i);
 
             try (InputStream is = imageUrls.get(i).openStream();
-                 OutputStream os = new FileOutputStream(path)) {
+                    OutputStream os = new FileOutputStream(path)) {
 
                 byte[] b = new byte[2048];
                 int length;
@@ -58,7 +69,7 @@ public class ImageDownloader {
                     os.write(b, 0, length);
                 }
                 
-                System.out.println("Download Scceed: " + path);
+                System.out.println("Download Succeed: " + path);
                 imagePaths.add(path);
             } catch (Exception e) {
                 System.err.println("Download Failed: " + e.getMessage());

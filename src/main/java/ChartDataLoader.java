@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Map;
 import javafx.util.Pair;
 
+/**
+ * The ChartDataLoader class is responsible for loading and organizing data for a chart, including
+ * dataset image data and user image data.
+ */
 public class ChartDataLoader {
     private final String R_VALUE_AVERAGE = "R Value Average";
     private final String G_VALUE_AVERAGE = "G Value Average";

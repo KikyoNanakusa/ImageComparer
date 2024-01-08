@@ -6,6 +6,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
+/**
+ * The `ImageScraper` class is an abstract class that provides methods for fetching content from URLs,
+ * extracting image sources, and downloading images.
+ */
 public abstract class ImageScraper implements IImageScraper{
     
     private String response;
@@ -41,6 +45,16 @@ public abstract class ImageScraper implements IImageScraper{
         downloadImage();
     }
 
+    /**
+     * The function fetches the content of a given URL using HTTP GET request and
+     * returns the response body
+     * if the status code is 200, otherwise throws an IOException.
+     * 
+     * @param url The `url` parameter is a string that represents the URL of the
+     *            content that you want to
+     *            fetch.
+     * @return The method fetchContent returns a String.
+     */
     public String fetchContent(final String url) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

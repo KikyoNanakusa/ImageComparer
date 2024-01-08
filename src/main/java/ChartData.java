@@ -2,6 +2,10 @@ import java.util.List;
 import java.util.Map;
 import javafx.util.Pair;
 
+/**
+ * The ChartData class is responsible for loading and providing access to various data arrays, user
+ * image data arrays, linked data, and series colors for a chart.
+ */
 public class ChartData {
     private List<long[]> dataArrays;
     private List<long[]> userImageDataArrays;

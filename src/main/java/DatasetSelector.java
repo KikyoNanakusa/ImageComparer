@@ -13,7 +13,7 @@ public class DatasetSelector {
     private final int MIN_INPUT = 1;
     private final int MAX_INPUT = 3;
     private final String BOOKWALKER_IMAGE_DIRECTLY = "downloads/img/BookWalker";
-    private final String USER_IMAGE_DIRECTLY = "UserPreparedData";
+    private final String USER_IMAGE_DIRECTLY = "UserPreparedData/dataset";
     private ArrayList<String> imagePaths;
 
 
@@ -28,7 +28,7 @@ public class DatasetSelector {
         System.out.println("1:Scrape newest 300 Mangas from BookWalker");
         System.out.println("2:Scrape newest 60 Mangas from BookWalker");
         System.out.println("3:Existing BookWalker images");
-        System.out.println("4:Your images");
+        System.out.println("4:Your own dataset");
     }    
 
     private boolean validateUserInput(int input) {

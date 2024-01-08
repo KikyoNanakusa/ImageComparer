@@ -52,6 +52,7 @@ javadoc.options.encoding = 'UTF-8'
 
 run {
    jvmArgs = ['--module-path', "$projectDir/libs", '--add-modules', 'javafx.controls,javafx.fxml']
+   standardInput = System.in
 }
 
 java {

@@ -4,6 +4,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * The DatasetSelector class allows the user to select a dataset and retrieves the corresponding image
+ * paths.
+ */
 public class DatasetSelector {
     private InputHandler inputHandler;
     private final int MIN_INUPT = 1;
@@ -51,6 +55,10 @@ public class DatasetSelector {
        return paths;
     }
 
+    /**
+    * The function `selectDataset()` allows the user to select a dataset based on their input and performs
+    * different actions accordingly.
+    */
     public void selectDataset() {
         int input;
         do {
@@ -76,7 +84,12 @@ public class DatasetSelector {
                 throw new IllegalArgumentException("Invalid input");
         }
     }
-
+    
+    /**
+    * The function returns an ArrayList of image paths.
+    * 
+    * @return An ArrayList of Strings containing image paths.
+    */
     public ArrayList<String> getImagePaths() {
         return this.imagePaths;
     }

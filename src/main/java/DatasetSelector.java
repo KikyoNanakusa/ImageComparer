@@ -13,7 +13,7 @@ public class DatasetSelector {
     private final int MIN_INPUT = 1;
     private final int MAX_INPUT = 3;
     private final String BOOKWALKER_IMAGE_DIRECTLY = "downloads/img/BookWalker";
-    private final String USER_IMAGE_DIRECTLY = "UserPreparedData/dataset";
+    private final String USER_IMAGE_DIRECTLY = "userPreparedData/dataset";
     private ArrayList<String> imagePaths;
 
 

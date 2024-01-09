@@ -4,10 +4,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DirectoryInitializer {
-    
+    public DirectoryInitializer() {
+        try {
+            createDirectoryIfNotExists(DirectoryPathData.USER_PREPARED_DATA_PATH);
+            createDirectoryIfNotExists(DirectoryPathData.DOWNLOADS_PATH);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
 
-    
-    public void createDirectoryIfNotExists(String dirName) throws IOException {
+    private void createDirectoryIfNotExists(String dirName) throws IOException {
         Path path = Paths.get(dirName);
         if (!Files.exists(path)) {
             Files.createDirectories(path);

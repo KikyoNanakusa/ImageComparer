@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 public class DirectoryInitializer {
     public DirectoryInitializer() {
         try {
-            createDirectoryIfNotExists(DirectoryPathData.USER_PREPARED_DATA_PATH);
+            createDirectoryIfNotExists(DirectoryPathData.USER_PREPARED_DATASET_PATH);
             createDirectoryIfNotExists(DirectoryPathData.DOWNLOADS_PATH);
         } catch (Exception e) {
             System.err.println(e);

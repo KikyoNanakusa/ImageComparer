@@ -12,14 +12,13 @@ public class DatasetSelector {
     private InputHandler inputHandler;
     private final int MIN_INPUT = 1;
     private final int MAX_INPUT = 3;
-    private final String BOOKWALKER_IMAGE_DIRECTLY = "downloads/img/BookWalker";
-    private final String USER_IMAGE_DIRECTLY = "UserPreparedData/dataset";
     private ArrayList<String> imagePaths;
 
 
     public DatasetSelector() {
         inputHandler = new InputHandler();
         imagePaths = new ArrayList<String>();
+        new DirectoryInitializer();
         printInstructions();
     }
     
@@ -75,10 +74,10 @@ public class DatasetSelector {
                 imagePaths = bookwalkerScraper.getImagePaths();
                 break;
             case 3:
-                imagePaths = getAllFileInDirectly(BOOKWALKER_IMAGE_DIRECTLY);
+                imagePaths = getAllFileInDirectly(DirectoryPathData.BOOKWALKER_IMAGE_DIRECTLY);
                 break;
             case 4:
-                imagePaths = getAllFileInDirectly(USER_IMAGE_DIRECTLY);
+                imagePaths = getAllFileInDirectly(DirectoryPathData.USER_PREPARED_DATASET_PATH);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid input");
@@ -93,6 +92,5 @@ public class DatasetSelector {
     public ArrayList<String> getImagePaths() {
         return this.imagePaths;
     }
-
 }
 
